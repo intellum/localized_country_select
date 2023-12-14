@@ -47,8 +47,8 @@ namespace :import do
     # ----- Get the CLDR HTML     --------------------------------------------------
     begin
       puts "... getting the HTML file for locale '#{web_locale}'"
-      url = "https://unicode-org.github.io/cldr-staging/charts/37/summary/#{web_locale}.html"
-      html = open(url).read
+      url = "https://www.unicode.org/cldr/cldr-aux/charts/37/summary/#{web_locale}.html"
+      html = URI.open(url).read
     rescue => e
       puts "[!] Invalid locale name '#{web_locale}'! Not found in CLDR (#{e})"
       exit 0
@@ -60,7 +60,7 @@ namespace :import do
     countries = parser.parse(html).inject([]) { |arr, (_code, attrs)| arr << attrs }
     countries.sort_by! { |c| c[:code] }
     puts '... fetching correct list of country codes and filtering translations'
-    correct_list = CSV.parse(open('https://raw.githubusercontent.com/datasets/un-locode/master/data/country-codes.csv').string)
+    correct_list = CSV.parse(URI.open('https://raw.githubusercontent.com/datasets/un-locode/master/data/country-codes.csv').string)
     country_codes = correct_list.map { |c| c[0] }
     countries.delete_if { |c| !country_codes.member?(c[:code].to_s) }
     puts "\n\n... imported #{countries.count} countries:"
