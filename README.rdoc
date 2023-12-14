@@ -1,3 +1,11 @@
+= Why forking?
+
+The original gem (https://github.com/railmlitwiniuk/localized_country_select) was not maintained anymore.
+
+It was using some deprecated urls to download country names from Unicode.org's CLDR repository, and was not compatible
+with Ruby 3. So I made {a few changes}[https://github.com/intellum/localized_country_select/commit/fd8da0a069116907dcb675ce7564b600c6a83a93]
+and now works as expected.
+
 = LocalizedCountrySelect
 
 Rails plugin to provide support for localized <tt><select></tt> menu with country names and for
