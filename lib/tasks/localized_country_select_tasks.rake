@@ -181,11 +181,11 @@ TAIL
       end
     end
 
-    REQUIREMENTS_MAP = [
+    REQUIREMENTS_MAP ||= [
         ['nokogiri', :Nokogiri],
         ['hpricot', :Hpricot],
         ['libxml', :LibXML]
-    ]
+    ].freeze
 
     def self.detect_parser
       REQUIREMENTS_MAP.each do |library, klass|
