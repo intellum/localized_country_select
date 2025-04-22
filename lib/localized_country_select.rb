@@ -57,7 +57,7 @@ module ActionView
       # Country codes listed as an array of symbols in +priority_countries+ argument will be listed first
       # TODO : Implement pseudo-named args with a hash, not the "somebody said PHP?" multiple args sillines
       def localized_country_select(object, method, priority_countries = nil, options = {}, html_options = {})
-        tag = CountrySelect.new(object, method, self, options)
+        tag = Tags::CountrySelect.new(object, method, self, options)
 
         tag.to_localized_country_select_tag(priority_countries, options, html_options)
       end
@@ -102,8 +102,12 @@ module ActionView
       end
     end
 
-    class CountrySelect < Tags::Base
-      include ToCountrySelectTag
+    module Tags
+      class CountrySelect < Base
+        include SelectRenderer
+        include FormOptionsHelper
+        include ToCountrySelectTag
+      end
     end
 
     class FormBuilder
