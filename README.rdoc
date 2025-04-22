@@ -26,6 +26,18 @@ Don't forget to restart the application when you add new locale.
 ActionView helper code is adapted from Rails' default +country_select+ plugin (previously in core).
 See http://github.com/rails/country_select/tree/master/lib/country_select.rb
 
+== Rails 7.1
+
+In your Gemfile add:
+
+    gem 'localized_country_select', '>= 0.12.0'
+
+== Rails 7.0
+
+In your Gemfile add:
+
+    gem 'localized_country_select', '>= 0.11.0'
+
 == Rails 5 / Rails 6
 
 In your Gemfile add:
